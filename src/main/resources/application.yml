@@ -1,7 +1,10 @@
 logging:
+  pattern:
+    console: "%clr(%d{${LOG_DATEFORMAT_PATTERN:yyyy-MM-dd HH:mm:ss.SSS}}){faint} %clr(${LOG_LEVEL_PATTERN:-%5p}) %clr(${PID:- }){magenta} %clr(---){faint} %clr([%15.15t]){faint} %clr(%-40.40logger{39}){cyan} %clr([%line:%M]){yellow} %clr(:){faint} %m%n${LOG_EXCEPTION_CONVERSION_WORD:%wEx}"
   level:
     org:
       springframework:
+        cache: trace
         boot:
           autoconfigure:
             condition: trace
@@ -17,5 +20,13 @@ spring:
   cache:
     caffeine:
       spec: "initialCapacity=100,maximumSize=1000,expireAfterWrite=6000s,recordStats"
+    cache-names:
+      - hello
   redis:
     host: 192.168.1.121
+
+mybatis-plus:
+  configuration:
+    cache-enabled: true
+    local-cache-scope: session
+    cache-names:
